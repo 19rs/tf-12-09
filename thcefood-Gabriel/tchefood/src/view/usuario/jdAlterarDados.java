@@ -10,9 +10,12 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import static view.usuario.jdGerenciarUsuario.JTConsulta;
+
 
 /**
  *
@@ -72,6 +75,11 @@ public class jdAlterarDados extends javax.swing.JDialog {
             }
         });
 
+        txtAlterarusuarioEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlterarusuarioEmailActionPerformed(evt);
+            }
+        });
         txtAlterarusuarioEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtAlterarusuarioEmailKeyReleased(evt);
@@ -84,9 +92,15 @@ public class jdAlterarDados extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Nova Senha:");
 
+        txtAlterarusuarioSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtAlterarusuarioSenha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtAlterarusuarioSenhaFocusGained(evt);
+            }
+        });
+        txtAlterarusuarioSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlterarusuarioSenhaActionPerformed(evt);
             }
         });
         txtAlterarusuarioSenha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -179,6 +193,8 @@ public class jdAlterarDados extends javax.swing.JDialog {
                 .addGap(20, 20, 20))
         );
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAlterarusuarioEmail, txtAlterarusuarioSenha});
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -252,6 +268,16 @@ public class jdAlterarDados extends javax.swing.JDialog {
 
     private void txtAlterarusuarioSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlterarusuarioSenhaKeyReleased
         // TODO add your handling code here:
+     
+       if(!txtAlterarusuarioSenha.getText().isEmpty()){
+            txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(Color.blue));
+       }else{
+            txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(Color.RED));
+       }
+       
+            
+        
+        
 
         e = !txtAlterarusuarioSenha.getText().isEmpty();
 
@@ -267,6 +293,14 @@ public class jdAlterarDados extends javax.swing.JDialog {
         // TODO add your handling code here:
         e = false;
     }//GEN-LAST:event_txtAlterarusuarioSenhaFocusGained
+
+    private void txtAlterarusuarioEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlterarusuarioEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlterarusuarioEmailActionPerformed
+
+    private void txtAlterarusuarioSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlterarusuarioSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlterarusuarioSenhaActionPerformed
 
     private boolean btnEnable(String regex, JTextField abc) {
         String tx = abc.getText();

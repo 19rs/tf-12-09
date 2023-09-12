@@ -57,11 +57,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtAlterarusuarioEmail" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAlterarusuarioEmail" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtAlterarusuarioSenha" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAlterarusuarioSenha" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -97,6 +97,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAlterarusuarioEmail">
       <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAlterarusuarioEmailActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlterarusuarioEmailKeyReleased"/>
       </Events>
       <AuxValues>
@@ -120,8 +121,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAlterarusuarioSenha">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtAlterarusuarioSenhaFocusGained"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAlterarusuarioSenhaActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlterarusuarioSenhaKeyReleased"/>
       </Events>
       <AuxValues>

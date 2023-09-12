@@ -52,8 +52,9 @@ public class DAOUsuario {
         } else {
             sql = "SELECT id, nome, email, senha, papel, telefone,data_criacao,data_atualizacao FROM tb_usuario where (nome like ? or data_criacao like ?)";
             ps = con.prepareStatement(sql);
-            ps.setString(1, "%" + nome + "%");
-          ps.setString(2, "%" + nome + "%");
+            ps.setString(1, nome + "%");
+          ps.setString(2, nome + "%");
+        
         }
 
         ResultSet rs = ps.executeQuery();

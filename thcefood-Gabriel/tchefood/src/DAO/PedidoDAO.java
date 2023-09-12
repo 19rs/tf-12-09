@@ -94,8 +94,18 @@ public class PedidoDAO {
             Connection con = conexaoMYSQL.obterConexao();
             PreparedStatement stmt = null;
 
-            stmt = con.prepareStatement("SELECT id, usuario_id, forma_pagamento_id, data_hora, status_pagamento, status_pedido, total FROM tb_pedido");
-
+            String SQL = "SELECT id, usuario_id, forma_pagamento_id, data_hora, status_pagamento, status_pedido, total FROM tb_pedido";
+            
+            if(!lista.isEmpty()){
+                SQL += " WHERE data_hora LIKE ?";
+            }
+            
+            stmt = con.prepareStatement(SQL);
+            
+            if(!lista.isEmpty()){
+                stmt.setString(1, "%" + lista + "%");
+            }
+            
             ResultSet rs = stmt.executeQuery();
 
             ArrayList<ModelPedido> modelPedido = new ArrayList<>();
