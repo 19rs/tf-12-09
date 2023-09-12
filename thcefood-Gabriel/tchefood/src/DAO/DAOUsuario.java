@@ -4,32 +4,27 @@
  */
 package DAO;
 
-
 import Model.ModelUsuario;
 import infra.ConexaoMYSQL;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
 /**
  *
  * @author adriano
  */
 public class DAOUsuario {
-    
-     public static void salvar(ModelUsuario user) throws SQLException, ClassNotFoundException {
-      
+
+    public static void salvar(ModelUsuario user) throws SQLException, ClassNotFoundException {
+
         ConexaoMYSQL conexaoMysql = new ConexaoMYSQL();
         Connection con = conexaoMysql.obterConexao();
         PreparedStatement ps = null;
 
-        ps = con.prepareStatement
-                ("INSERT INTO tb_usuario(nome, email,senha,papel,telefone) VALUES (?, ?, ?, ?,?)");
+        ps = con.prepareStatement("INSERT INTO tb_usuario(nome, email,senha,papel,telefone) VALUES (?, ?, ?, ?,?)");
 
         ps.setString(1, user.getNome());
         ps.setString(2, user.getEmail());
@@ -37,37 +32,35 @@ public class DAOUsuario {
         ps.setString(4, user.getPapel());
         ps.setString(5, user.getTelefone());
 
-
         ps.executeUpdate();
 
         ps.close();
         con.close();
 
-       
     }
-    
-     public static ArrayList<ModelUsuario> consultar(String nome) throws ClassNotFoundException, SQLException {
 
-       ConexaoMYSQL conexaoMysql = new ConexaoMYSQL();
+    public static ArrayList<ModelUsuario> consultar(String nome) throws ClassNotFoundException, SQLException {
+
+        ConexaoMYSQL conexaoMysql = new ConexaoMYSQL();
         Connection con = conexaoMysql.obterConexao();
         PreparedStatement ps = null;
         String sql = null;
 
-        if(nome.isEmpty()){
+        if (nome.isEmpty()) {
             sql = "SELECT id, nome, email, senha, papel, telefone,data_criacao,data_atualizacao FROM tb_usuario";
             ps = con.prepareStatement(sql);
-        }else{
-            sql = "SELECT id, nome, email, senha, papel, telefone,data_criacao,data_atualizacao FROM tb_usuario where nome like ?";
+        } else {
+            sql = "SELECT id, nome, email, senha, papel, telefone,data_criacao,data_atualizacao FROM tb_usuario where (nome like ? or data_criacao like ?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, "%" + nome + "%");
+          ps.setString(2, "%" + nome + "%");
         }
-
 
         ResultSet rs = ps.executeQuery();
 
         ArrayList<ModelUsuario> usuarioList = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             ModelUsuario modelUsuario = new ModelUsuario();
 
             modelUsuario.setId(rs.getInt("id"));
@@ -84,7 +77,8 @@ public class DAOUsuario {
 
         return usuarioList;
     }
-       public static void deletar(ModelUsuario user) throws SQLException, ClassNotFoundException {
+
+    public static void deletar(ModelUsuario user) throws SQLException, ClassNotFoundException {
 
         ConexaoMYSQL conexaoMysql = new ConexaoMYSQL();
         Connection con = conexaoMysql.obterConexao();
@@ -100,8 +94,8 @@ public class DAOUsuario {
         con.close();
 
     }
-       
-         public static boolean isIdValido(int id) throws SQLException, ClassNotFoundException {
+
+    public static boolean isIdValido(int id) throws SQLException, ClassNotFoundException {
 
         ConexaoMYSQL conexaoMsql = new ConexaoMYSQL();
         Connection con = conexaoMsql.obterConexao();
@@ -114,12 +108,11 @@ public class DAOUsuario {
 
         boolean idExist = rs.next();
 
-
         return idExist;
 
     }
-         
-          public static String nomeUsuario(int id) throws SQLException, ClassNotFoundException {
+
+    public static String nomeUsuario(int id) throws SQLException, ClassNotFoundException {
 
         ConexaoMYSQL conexaoMsql = new ConexaoMYSQL();
         Connection con = conexaoMsql.obterConexao();
@@ -130,16 +123,15 @@ public class DAOUsuario {
 
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                nome = rs.getString("nome");
-            }
+        if (rs.next()) {
+            nome = rs.getString("nome");
+        }
 
-            return nome;
-
+        return nome;
 
     }
-          
-            public static void update(ModelUsuario ad) throws SQLException, ClassNotFoundException {
+
+    public static void update(ModelUsuario ad) throws SQLException, ClassNotFoundException {
         ConexaoMYSQL conexaoMysql = new ConexaoMYSQL();
         Connection con = conexaoMysql.obterConexao();
         PreparedStatement ps = null;
@@ -155,41 +147,36 @@ public class DAOUsuario {
         ps.executeUpdate();
         System.out.println("Registro alterado com sucesso.");
 
-
     }
-            
-            
-            public static int getUsuarioId(int usuarioId) {
+
+    public static int getUsuarioId(int usuarioId) {
         try {
-        ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
-        Connection con = conexaoMYSQL.obterConexao();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int categoria = -1;
+            ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
+            Connection con = conexaoMYSQL.obterConexao();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            int categoria = -1;
 
-        stmt = con.prepareStatement("SELECT id FROM tb_usuario WHERE id = ?");
-        stmt.setInt(1, usuarioId);
-        rs = stmt.executeQuery();
+            stmt = con.prepareStatement("SELECT id FROM tb_usuario WHERE id = ?");
+            stmt.setInt(1, usuarioId);
+            rs = stmt.executeQuery();
 
-        if (rs.next()) {
-            categoria = rs.getInt("id");
-        }
+            if (rs.next()) {
+                categoria = rs.getInt("id");
+            }
 
-        return categoria;
+            return categoria;
 
-        } catch(Exception e6){
+        } catch (Exception e6) {
             throw new RuntimeException(e6);
         }
     }
-            
-            
+
     //criei pra testar, comentei na exceção
-    public static ModelUsuario obterUsuarioPorID(int id) throws ClassNotFoundException, SQLException 
-    {
-       ModelUsuario modelUsuario = null;
-       
-        try 
-        {
+    public static ModelUsuario obterUsuarioPorID(int id) throws ClassNotFoundException, SQLException {
+        ModelUsuario modelUsuario = null;
+
+        try {
             ConexaoMYSQL conexaoMysql = new ConexaoMYSQL();
             Connection conn = conexaoMysql.obterConexao();
             PreparedStatement stmt = null;
@@ -200,10 +187,9 @@ public class DAOUsuario {
 
             ResultSet rs = stmt.getResultSet();
 
-            if(rs.next())
-            {
+            if (rs.next()) {
                 modelUsuario = new ModelUsuario();
-                
+
                 modelUsuario.setId(rs.getInt("id"));
                 modelUsuario.setNome(rs.getString("nome"));
                 modelUsuario.setEmail(rs.getString("email"));
@@ -213,16 +199,11 @@ public class DAOUsuario {
                 modelUsuario.setDataCriacao(rs.getTimestamp("data_criacao"));
                 modelUsuario.setDataAtualizacao(rs.getTimestamp("data_atualizacao"));
             }
-        } 
-        catch (ClassNotFoundException ex) 
-        {
+        } catch (ClassNotFoundException ex) {
             //Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
-        {
+        } catch (SQLException ex) {
             //Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
 
         return modelUsuario;
     }

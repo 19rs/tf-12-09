@@ -8,8 +8,11 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 
 import static DAO.DAOUsuario.isIdValido;
 import Model.ModelUsuario;
+import com.toedter.calendar.JCalendar;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,6 +25,9 @@ import static view.usuario.jdAlterarDados.*;
  * @author adriano
  */
 public class jdGerenciarUsuario extends javax.swing.JDialog {
+
+    String data = "";
+    String opcao = "";
 
     /**
      * Creates new form jdGerenciarUsuario
@@ -46,6 +52,7 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
         txtPesquisar = new javax.swing.JTextField();
         jbAlterar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciamento Usuarios");
@@ -104,23 +111,32 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
             }
         });
 
+        jCalendar1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jCalendar1PropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtPesquisar)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbExcluir))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(jbExcluir)))
+                .addGap(30, 30, 30))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jbAlterar, jbExcluir});
@@ -135,7 +151,9 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
                     .addComponent(jbAlterar)
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -153,10 +171,9 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
             int codigo = (int) (JTConsulta.getValueAt(JTConsulta.getSelectedRow(), 0));
             //excluir linha da tabela
             ((DefaultTableModel) JTConsulta.getModel()).removeRow(JTConsulta.getSelectedRow());
-            
+
             String nome;
-            
-            
+
             ModelUsuario a = new ModelUsuario();
             a.setId(codigo);
             nome = DAO.DAOUsuario.nomeUsuario(codigo);
@@ -165,8 +182,6 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(jdGerenciarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-     
 
 
     }//GEN-LAST:event_jbExcluirActionPerformed
@@ -194,10 +209,14 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     
+        
+            String a = txtPesquisar.getText();
+            
+            System.out.println(a);
+     
         try {
             // TODO add your handling code here:
-
-            String a = txtPesquisar.getText();
 
             ArrayList<ModelUsuario> dwd = DAO.DAOUsuario.consultar(a);
 
@@ -232,6 +251,17 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jCalendar1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendar1PropertyChange
+        // TODO add your handling code here:
+
+        if (evt.getPropertyName().equals("calendar")) {
+            java.util.Calendar selectedDate = (java.util.Calendar) evt.getNewValue();
+            java.util.Date date = selectedDate.getTime();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            txtPesquisar.setText(dateFormat.format(date));
+        }
+    }//GEN-LAST:event_jCalendar1PropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +292,7 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable JTConsulta;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbExcluir;
