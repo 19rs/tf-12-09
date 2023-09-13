@@ -25,25 +25,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtAlterarusuarioNome" max="32767" attributes="0"/>
-                  <Component id="txtAlterarusuarioEmail" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtAlterarusuarioSenha" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtAlterarusuarioPapel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtAlterarusuarioTelefone" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel3" alignment="0" pref="235" max="32767" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtAlterarusuarioNome" max="32767" attributes="0"/>
+                          <Component id="txtAlterarusuarioEmail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAlterarusuarioSenha" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAlterarusuarioPapel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAlterarusuarioTelefone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" pref="235" max="32767" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="jbAlterar" min="-2" pref="156" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="50" max="32767" attributes="0"/>
-              <Component id="jbAlterar" min="-2" pref="156" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,23 +56,23 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtAlterarusuarioNome" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAlterarusuarioNome" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtAlterarusuarioEmail" linkSize="1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAlterarusuarioEmail" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtAlterarusuarioSenha" linkSize="1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAlterarusuarioSenha" linkSize="2" min="-2" pref="28" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtAlterarusuarioPapel" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAlterarusuarioPapel" linkSize="2" min="-2" pref="28" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtAlterarusuarioTelefone" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAlterarusuarioTelefone" linkSize="2" min="-2" pref="28" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jbAlterar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -92,6 +95,7 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlterarusuarioNomeKeyReleased"/>
       </Events>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtAlterarusuarioNome.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
@@ -101,6 +105,7 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlterarusuarioEmailKeyReleased"/>
       </Events>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtAlterarusuarioEmail.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
@@ -151,6 +156,7 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlterarusuarioPapelKeyReleased"/>
       </Events>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtAlterarusuarioPapel.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
@@ -185,6 +191,7 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlterarusuarioTelefoneKeyReleased"/>
       </Events>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtAlterarusuarioTelefone.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>

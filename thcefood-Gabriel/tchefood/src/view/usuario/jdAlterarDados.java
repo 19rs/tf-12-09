@@ -147,23 +147,24 @@ public class jdAlterarDados extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAlterarusuarioNome)
-                    .addComponent(txtAlterarusuarioEmail)
-                    .addComponent(txtAlterarusuarioSenha)
-                    .addComponent(txtAlterarusuarioPapel)
-                    .addComponent(txtAlterarusuarioTelefone)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtAlterarusuarioNome)
+                            .addComponent(txtAlterarusuarioEmail)
+                            .addComponent(txtAlterarusuarioSenha)
+                            .addComponent(txtAlterarusuarioPapel)
+                            .addComponent(txtAlterarusuarioTelefone)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,21 +180,26 @@ public class jdAlterarDados extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAlterarusuarioSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAlterarusuarioSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAlterarusuarioPapel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAlterarusuarioPapel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAlterarusuarioTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAlterarusuarioTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbAlterar)
                 .addGap(20, 20, 20))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAlterarusuarioEmail, txtAlterarusuarioSenha});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAlterarusuarioEmail, txtAlterarusuarioNome, txtAlterarusuarioPapel, txtAlterarusuarioSenha, txtAlterarusuarioTelefone});
+
+        txtAlterarusuarioNome.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
+        txtAlterarusuarioEmail.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
+        txtAlterarusuarioPapel.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
+        txtAlterarusuarioTelefone.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
 
         pack();
         setLocationRelativeTo(null);
@@ -270,14 +276,11 @@ public class jdAlterarDados extends javax.swing.JDialog {
         // TODO add your handling code here:
      
        if(!txtAlterarusuarioSenha.getText().isEmpty()){
-            txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(Color.blue));
+            txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
        }else{
             txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(Color.RED));
        }
        
-            
-        
-        
 
         e = !txtAlterarusuarioSenha.getText().isEmpty();
 
@@ -306,10 +309,12 @@ public class jdAlterarDados extends javax.swing.JDialog {
         String tx = abc.getText();
         if (tx.matches(regex)) {
             abc.setForeground(Color.black);
+            abc.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
             return true;
 
         } else {
             abc.setForeground(Color.red);
+            abc.setBorder(BorderFactory.createLineBorder(Color.RED));
             abc.requestFocus();
             return false;
         }

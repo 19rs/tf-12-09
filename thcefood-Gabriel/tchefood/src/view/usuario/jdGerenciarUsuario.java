@@ -54,10 +54,12 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
         txtPesquisar = new javax.swing.JTextField();
         jbAlterar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciamento Usuarios");
 
+        JTConsulta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         JTConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -86,6 +88,7 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
             JTConsulta.getColumnModel().getColumn(7).setResizable(false);
         }
 
+        jbExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/clean.png"))); // NOI18N
         jbExcluir.setText("Excluir");
         jbExcluir.setEnabled(false);
@@ -95,6 +98,9 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
             }
         });
 
+        txtPesquisar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jbAlterar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/paper.png"))); // NOI18N
         jbAlterar.setText("Alterar");
         jbAlterar.setEnabled(false);
@@ -104,11 +110,20 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
         jButton3.setText("Pesquisar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Email", "Telefone", "Papel", "Telefone", "Data Criacao" }));
+        jComboBox1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBox1PropertyChange(evt);
             }
         });
 
@@ -119,16 +134,18 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 924, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbExcluir)))
-                .addGap(37, 37, 37))
+                .addGap(20, 20, 20))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jbAlterar, jbExcluir});
@@ -141,13 +158,14 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
                     .addComponent(jbExcluir)
                     .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbAlterar)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
+                    .addComponent(jButton3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
-        PromptSupport.setPrompt("Pesquisar por nome ...", txtPesquisar);
+        PromptSupport.setPrompt("Pesquisar ...", txtPesquisar);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, txtPesquisar);
 
         pack();
@@ -205,10 +223,9 @@ txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(Color.RED));
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
      
-        
+
             String a = txtPesquisar.getText();
-            
-            System.out.println(a);
+           
      
         try {
             // TODO add your handling code here:
@@ -246,6 +263,11 @@ txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(Color.RED));
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_jComboBox1PropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +298,7 @@ txtAlterarusuarioSenha.setBorder(BorderFactory.createLineBorder(Color.RED));
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable JTConsulta;
     private javax.swing.JButton jButton3;
+    public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbExcluir;

@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.prompt.PromptSupport;
@@ -65,9 +66,11 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Nome:");
 
+        txtCadastrarusuarioNome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCadastrarusuarioNome.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         txtCadastrarusuarioNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCadastrarusuarioNomeFocusLost(evt);
@@ -79,27 +82,38 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Email:");
 
+        txtCadastrarusuarioEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCadastrarusuarioEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         txtCadastrarusuarioEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCadastrarusuarioEmailKeyReleased(evt);
             }
         });
 
+        txtCadastrarusuarioSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCadastrarusuarioSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         txtCadastrarusuarioSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCadastrarusuarioSenhaKeyReleased(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Senha:");
 
+        txtCadastrarusuarioPapel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCadastrarusuarioPapel.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         txtCadastrarusuarioPapel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCadastrarusuarioPapelFocusLost(evt);
+            }
+        });
+        txtCadastrarusuarioPapel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCadastrarusuarioPapelActionPerformed(evt);
             }
         });
         txtCadastrarusuarioPapel.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -108,10 +122,10 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Papel:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Telefone:");
 
         jbSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -133,6 +147,8 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
             }
         });
 
+        txtCadastrarusuarioTelefone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCadastrarusuarioTelefone.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         txtCadastrarusuarioTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCadastrarusuarioTelefoneKeyReleased(evt);
@@ -144,24 +160,30 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                    .addComponent(txtCadastrarusuarioPapel)
-                    .addComponent(txtCadastrarusuarioSenha)
-                    .addComponent(txtCadastrarusuarioEmail)
-                    .addComponent(txtCadastrarusuarioNome)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCadastrarusuarioTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCadastrarusuarioPapel, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCadastrarusuarioSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                    .addComponent(txtCadastrarusuarioEmail)
+                                    .addComponent(txtCadastrarusuarioNome)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addComponent(jbSalvar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addComponent(txtCadastrarusuarioTelefone))
-                .addGap(20, 20, 20))
+                        .addComponent(jButton2)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,31 +191,31 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCadastrarusuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCadastrarusuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCadastrarusuarioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCadastrarusuarioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCadastrarusuarioSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCadastrarusuarioSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCadastrarusuarioPapel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCadastrarusuarioPapel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCadastrarusuarioTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCadastrarusuarioTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
                     .addComponent(jButton2))
                 .addGap(20, 20, 20))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCadastrarusuarioEmail, txtCadastrarusuarioNome, txtCadastrarusuarioPapel, txtCadastrarusuarioSenha});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCadastrarusuarioEmail, txtCadastrarusuarioNome, txtCadastrarusuarioPapel, txtCadastrarusuarioSenha, txtCadastrarusuarioTelefone});
 
         PromptSupport.setPrompt("Insira o nome ...", txtCadastrarusuarioNome);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, txtCadastrarusuarioNome);
@@ -203,7 +225,7 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, txtCadastrarusuarioSenha);
         PromptSupport.setPrompt("Insira o acesso ...", txtCadastrarusuarioPapel);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, txtCadastrarusuarioPapel);
-        PromptSupport.setPrompt("Insira o telfone ...", txtCadastrarusuarioTelefone);
+        PromptSupport.setPrompt("Insira o telefone ...", txtCadastrarusuarioTelefone);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, txtCadastrarusuarioTelefone);
 
         pack();
@@ -285,6 +307,7 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
     private void txtCadastrarusuarioEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadastrarusuarioEmailKeyReleased
         // TODO add your handling code here:
         arr[2] = !txtCadastrarusuarioEmail.getText().isEmpty();
+        txtCadastrarusuarioEmail.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
         teste();
 
     }//GEN-LAST:event_txtCadastrarusuarioEmailKeyReleased
@@ -292,6 +315,7 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
     private void txtCadastrarusuarioSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadastrarusuarioSenhaKeyReleased
         // TODO add your handling code here:
         arr[3] = !txtCadastrarusuarioSenha.getText().isEmpty();
+        txtCadastrarusuarioSenha.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
         teste();
     }//GEN-LAST:event_txtCadastrarusuarioSenhaKeyReleased
 
@@ -302,6 +326,10 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_txtCadastrarusuarioTelefoneKeyReleased
+
+    private void txtCadastrarusuarioPapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadastrarusuarioPapelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCadastrarusuarioPapelActionPerformed
 
     private void teste() {
         for (boolean b : arr) {
@@ -321,9 +349,11 @@ public class jdcadastrarUsuario extends javax.swing.JDialog {
         String tx = abc.getText();
         if (tx.matches(regex)) {
             abc.setForeground(Color.black);
+            abc.setBorder(BorderFactory.createLineBorder(new Color(68,192,85)));
             return true;
         } else {
             abc.setForeground(Color.red);
+            abc.setBorder(BorderFactory.createLineBorder(Color.RED));
             abc.requestFocus();
             return false;
         }

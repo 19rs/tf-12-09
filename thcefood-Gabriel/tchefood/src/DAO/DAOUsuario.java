@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import static view.usuario.jdGerenciarUsuario.jComboBox1;
 
 /**
  *
@@ -50,11 +51,27 @@ public class DAOUsuario {
             sql = "SELECT id, nome, email, senha, papel, telefone,data_criacao,data_atualizacao FROM tb_usuario";
             ps = con.prepareStatement(sql);
         } else {
-            sql = "SELECT id, nome, email, senha, papel, telefone,data_criacao,data_atualizacao FROM tb_usuario where (nome like ? or data_criacao like ?)";
+
+            int itemSelecionado = jComboBox1.getSelectedIndex();
+
+            switch (itemSelecionado) {
+                case 0 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE nome LIKE ?";
+                case 1 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE email LIKE ?";
+                case 2 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE telefone LIKE ?";
+                case 3 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE papel LIKE ?";
+                case 4 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE telefone LIKE ?";
+                case 5 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE data_criacao LIKE ?";
+
+            }
             ps = con.prepareStatement(sql);
             ps.setString(1, nome + "%");
-          ps.setString(2, nome + "%");
-        
+
         }
 
         ResultSet rs = ps.executeQuery();
