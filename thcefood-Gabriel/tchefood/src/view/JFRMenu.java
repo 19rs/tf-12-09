@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import view.cardapio.jDialogCardapio;
-import view.cardapio.jDialogCardapio2;
 import view.categoriaprodutos.jdMenuCategoriaP;
 import view.formapagamentos.JDMenuFormaPagamento;
 import view.pedidos.JDMenuPedido;

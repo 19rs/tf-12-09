@@ -313,6 +313,10 @@ public class ProdutoDAO
     {
         ArrayList<ProdutoModel> produtos = new ArrayList<ProdutoModel>();
         
+        String trim = filtroNome.trim();
+        filtroNome = "%" + trim + "%";
+        //System.out.println("Filtro Nome: " + filtroNome);
+        
         try 
         {
             ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();

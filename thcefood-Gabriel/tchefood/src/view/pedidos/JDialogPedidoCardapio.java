@@ -56,6 +56,7 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         verificarQuantidadeRegistros();
         checarPaginacao();
         jPanelCardapio.setVisible(false);
+        jButtonIncluir.setVisible(false);
     }
    
     
@@ -121,7 +122,8 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         {
             int id = produtos.get(i).getId();
             
-            btnProdutos.get(i).setText(produtos.get(i).getId() + " - "  + produtos.get(i).getNome());
+            //btnProdutos.get(i).setText(produtos.get(i).getId() + " - "  + produtos.get(i).getNome());
+            btnProdutos.get(i).setText(produtos.get(i).getNome());
             
             String caminhoImagem = produtos.get(i).getImagem();
             
@@ -386,8 +388,8 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         });
         jPanelCardapio.add(jButtonPrevPagina, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 585, -1, -1));
 
-        jButtonFiltrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
-        jButtonFiltrarProduto.setText("Pesquisar");
+        jButtonFiltrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tchefood/src/icon/filtro-limpo.png"))); // NOI18N
+        jButtonFiltrarProduto.setText("Limpar");
         jButtonFiltrarProduto.setPreferredSize(new java.awt.Dimension(100, 25));
         jButtonFiltrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,11 +399,21 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         jPanelCardapio.add(jButtonFiltrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 25, -1, -1));
 
         jTextFieldFiltrarProduto.setPreferredSize(new java.awt.Dimension(64, 25));
+        jTextFieldFiltrarProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldFiltrarProdutoKeyReleased(evt);
+            }
+        });
         jPanelCardapio.add(jTextFieldFiltrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 25, 240, -1));
 
         jComboBoxCategoriaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos Produtos" }));
         jComboBoxCategoriaProduto.setMinimumSize(new java.awt.Dimension(65, 22));
         jComboBoxCategoriaProduto.setPreferredSize(new java.awt.Dimension(65, 25));
+        jComboBoxCategoriaProduto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCategoriaProdutoItemStateChanged(evt);
+            }
+        });
         jPanelCardapio.add(jComboBoxCategoriaProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 25, 190, -1));
 
         jPanelPedido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -676,7 +688,21 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jButtonFiltrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarProdutoActionPerformed
-        if(jComboBoxCategoriaProduto.getSelectedIndex() > 0)
+        jComboBoxCategoriaProduto.setSelectedIndex(0);
+        jTextFieldFiltrarProduto.setText(null);
+        filtroCategoria = "%";
+        filtroNome = "%";
+        
+        pagina = 1;
+        offset = 0;
+        
+        carregarCardapio();
+        verificarQuantidadeRegistros();
+        checarPaginacao();
+        
+        
+        //Troquei, antes era o botão pesquisar
+        /*if(jComboBoxCategoriaProduto.getSelectedIndex() > 0)
         {
             int idDaCategoria = categorias.get(jComboBoxCategoriaProduto.getSelectedIndex() -1 ).getId(); //pq começa em 0 o array
 
@@ -700,7 +726,7 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         
         carregarCardapio();
         verificarQuantidadeRegistros();
-        checarPaginacao();
+        checarPaginacao();*/
     }//GEN-LAST:event_jButtonFiltrarProdutoActionPerformed
 
     private void jbDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDinheiroActionPerformed
@@ -779,6 +805,67 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         }
         
     }//GEN-LAST:event_jTextFieldUsuarioFocusLost
+
+    private void jTextFieldFiltrarProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFiltrarProdutoKeyReleased
+        // TODO add your handling code here:
+        if(jComboBoxCategoriaProduto.getSelectedIndex() > 0)
+        {
+            int idDaCategoria = categorias.get(jComboBoxCategoriaProduto.getSelectedIndex() -1 ).getId(); //pq começa em 0 o array
+
+            filtroCategoria = String.valueOf(idDaCategoria);
+        }
+        else
+        {
+            filtroCategoria = "%";
+        }
+        if(!jTextFieldFiltrarProduto.getText().isBlank())
+        {
+            //filtroNome = "%" + jTextFieldFiltrarProduto.getText() + "%";
+            filtroNome = jTextFieldFiltrarProduto.getText();
+        }
+        else
+        {
+            filtroNome = "%";
+        }
+        
+        pagina = 1;
+        offset = 0;
+        
+        carregarCardapio();
+        verificarQuantidadeRegistros();
+        checarPaginacao();
+        
+    }//GEN-LAST:event_jTextFieldFiltrarProdutoKeyReleased
+
+    private void jComboBoxCategoriaProdutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaProdutoItemStateChanged
+        // TODO add your handling code here:
+        if(jComboBoxCategoriaProduto.getSelectedIndex() > 0)
+        {
+            int idDaCategoria = categorias.get(jComboBoxCategoriaProduto.getSelectedIndex() -1 ).getId(); //pq começa em 0 o array
+
+            filtroCategoria = String.valueOf(idDaCategoria);
+        }
+        else
+        {
+            filtroCategoria = "%";
+        }
+        if(!jTextFieldFiltrarProduto.getText().isBlank())
+        {
+            //filtroNome = "%" + jTextFieldFiltrarProduto.getText() + "%";
+            filtroNome = jTextFieldFiltrarProduto.getText();
+        }
+        else
+        {
+            filtroNome = "%";
+        }
+        
+        pagina = 1;
+        offset = 0;
+        
+        carregarCardapio();
+        verificarQuantidadeRegistros();
+        checarPaginacao();
+    }//GEN-LAST:event_jComboBoxCategoriaProdutoItemStateChanged
 
     private void checarDadosCriarPedido()
     {

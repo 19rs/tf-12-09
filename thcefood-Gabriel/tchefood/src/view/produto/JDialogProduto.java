@@ -49,7 +49,8 @@ public class JDialogProduto extends javax.swing.JDialog
         
         nome = produto.getNome();
         jLabelNome.setText(produto.getNome());
-        jLabelDescricao.setText(produto.getDescricao());
+        
+        jLabelDescricao.setText("<html><p>" +produto.getDescricao() + "</p></html>");
         
         preco = produto.getPreco();
         jLabelPreco.setText("R$" + String.format("%.2f", preco));

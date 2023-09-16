@@ -153,9 +153,9 @@ public class jdCadastrarCategoriaP extends javax.swing.JDialog {
     private void tfDescricaoProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescricaoProdutoKeyTyped
         char texto = evt.getKeyChar();
         
-        if(!Character.isAlphabetic(texto) && texto != KeyEvent.VK_SPACE) {
-            JOptionPane.showMessageDialog(rootPane, "Digite apenas letras.");
-            evt.consume();
+        if(!Character.isAlphabetic(texto) && texto != KeyEvent.VK_SPACE && texto != KeyEvent.VK_BACK_SPACE && texto != KeyEvent.VK_DELETE) {
+          JOptionPane.showMessageDialog(rootPane, "Digite apenas letras.");
+           evt.consume();
         }
     }//GEN-LAST:event_tfDescricaoProdutoKeyTyped
 
