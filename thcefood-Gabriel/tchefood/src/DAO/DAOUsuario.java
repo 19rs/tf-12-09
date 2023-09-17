@@ -55,17 +55,19 @@ public class DAOUsuario {
             int itemSelecionado = jComboBox1.getSelectedIndex();
 
             switch (itemSelecionado) {
-                case 0 ->
-                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE nome LIKE ?";
+                 case 0 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE id LIKE ?";
                 case 1 ->
-                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE email LIKE ?";
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE nome LIKE ?";
                 case 2 ->
-                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE telefone LIKE ?";
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE email LIKE ?";
                 case 3 ->
-                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE papel LIKE ?";
-                case 4 ->
                     sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE telefone LIKE ?";
+                case 4 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE papel LIKE ?";
                 case 5 ->
+                    sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE telefone LIKE ?";
+                case 6 ->
                     sql = "SELECT id, nome, email, senha, papel, telefone, data_criacao, data_atualizacao FROM tb_usuario WHERE data_criacao LIKE ?";
 
             }
