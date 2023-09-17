@@ -80,12 +80,8 @@ public class jdGerenciarUsuario extends javax.swing.JDialog {
         if (JTConsulta.getColumnModel().getColumnCount() > 0) {
             JTConsulta.getColumnModel().getColumn(0).setResizable(false);
             JTConsulta.getColumnModel().getColumn(1).setResizable(false);
-            JTConsulta.getColumnModel().getColumn(2).setResizable(false);
             JTConsulta.getColumnModel().getColumn(3).setResizable(false);
             JTConsulta.getColumnModel().getColumn(4).setResizable(false);
-            JTConsulta.getColumnModel().getColumn(5).setResizable(false);
-            JTConsulta.getColumnModel().getColumn(6).setResizable(false);
-            JTConsulta.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jbExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
