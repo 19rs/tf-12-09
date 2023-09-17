@@ -136,7 +136,6 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
                 return canEdit [columnIndex];
             }
         });
-        jTableProdutos.setIntercellSpacing(new java.awt.Dimension(10, 0));
         jTableProdutos.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         jTableProdutos.setPreferredSize(new java.awt.Dimension(800, 200));
         jTableProdutos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

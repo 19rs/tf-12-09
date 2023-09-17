@@ -434,4 +434,45 @@ public class ProdutoDAO
         
         return produtos;
     }
+    
+    public ArrayList<ProdutoModel> obterTodoCardapio()
+    {
+        ArrayList<ProdutoModel> produtos = new ArrayList<ProdutoModel>();
+        
+        try 
+        {
+            ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
+            Connection conn = conexaoMYSQL.obterConexao();
+            PreparedStatement stmt = null;
+            
+            stmt = conn.prepareStatement("SELECT id, categoria_produto_id, nome, descricao, preco, imagem FROM tb_produto");
+            stmt.executeQuery();
+            
+            ResultSet rs = stmt.getResultSet();
+            
+            while(rs.next())
+            {
+                ProdutoModel produto = new ProdutoModel();
+                
+                produto.setId(rs.getInt("id"));
+                produto.setNome(rs.getString("nome"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setPreco(rs.getDouble("preco"));
+                produto.setImagem(rs.getString("imagem"));
+                
+                //pegar categoria do produto
+                ModelCategoriaProduto categoriaProduto = CategoriaProdutoDAO.getCategoria(rs.getInt("categoria_produto_id"));
+                                
+                produto.setCategoriaProduto(categoriaProduto);
+                
+                produtos.add(produto);
+            }
+        } 
+        catch (ClassNotFoundException | SQLException ex) 
+        {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return produtos;
+    }
 }

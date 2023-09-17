@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import view.cardapio.JDialogCardapio;
 import view.itensPedidos.JDialogMenuItensPedido;
 
 
@@ -63,6 +64,9 @@ public class JFRMenu extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btnCardapio = new javax.swing.JPanel();
+        jLabelCardapio = new javax.swing.JLabel();
+        jLabelCardapioIcone = new javax.swing.JLabel();
         Home = new javax.swing.JPanel();
         btnusuarios = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -107,7 +111,7 @@ public class JFRMenu extends javax.swing.JFrame {
         sidebar.setBackground(new java.awt.Color(10, 18, 42));
 
         btnConsultar.setBackground(new java.awt.Color(10, 18, 42));
-        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConsultarMouseClicked(evt);
@@ -125,7 +129,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Localizacao");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -162,7 +166,7 @@ public class JFRMenu extends javax.swing.JFrame {
         );
 
         btnHome.setBackground(new java.awt.Color(10, 18, 42));
-        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
@@ -180,7 +184,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Home");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -227,6 +231,61 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("HORA E DATA");
 
+        btnCardapio.setBackground(new java.awt.Color(10, 18, 42));
+        btnCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCardapioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCardapioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCardapioMouseExited(evt);
+            }
+        });
+
+        jLabelCardapio.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelCardapio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelCardapio.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCardapio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCardapio.setText("Cardápio");
+        jLabelCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCardapioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelCardapioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelCardapioMouseExited(evt);
+            }
+        });
+
+        jLabelCardapioIcone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tchefood/src/icon/cardapio.png"))); // NOI18N
+
+        javax.swing.GroupLayout btnCardapioLayout = new javax.swing.GroupLayout(btnCardapio);
+        btnCardapio.setLayout(btnCardapioLayout);
+        btnCardapioLayout.setHorizontalGroup(
+            btnCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnCardapioLayout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jLabelCardapioIcone)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCardapio)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        btnCardapioLayout.setVerticalGroup(
+            btnCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnCardapioLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(btnCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCardapio)
+                    .addComponent(jLabelCardapioIcone))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
@@ -241,6 +300,7 @@ public class JFRMenu extends javax.swing.JFrame {
                         .addComponent(jSeparator1))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(btnCardapio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidebarLayout.setVerticalGroup(
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +313,9 @@ public class JFRMenu extends javax.swing.JFrame {
                 .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -291,7 +353,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Usuarios");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout btnusuariosLayout = new javax.swing.GroupLayout(btnusuarios);
         btnusuarios.setLayout(btnusuariosLayout);
@@ -321,7 +383,7 @@ public class JFRMenu extends javax.swing.JFrame {
         JLPedidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLPedidos.setText("Pedidos");
         JLPedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JLPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JLPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanelPedidosLayout = new javax.swing.GroupLayout(jPanelPedidos);
         jPanelPedidos.setLayout(jPanelPedidosLayout);
@@ -357,7 +419,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Categoria dos Produtos");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -387,7 +449,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Itens dos Pedidos");
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
@@ -422,7 +484,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabelProdutos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProdutos.setText("Produtos");
         jLabelProdutos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabelProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanelProdutosLayout = new javax.swing.GroupLayout(jPanelProdutos);
         jPanelProdutos.setLayout(jPanelProdutosLayout);
@@ -452,7 +514,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Formas de Pagamento");
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -467,7 +529,7 @@ public class JFRMenu extends javax.swing.JFrame {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/github (2).png"))); // NOI18N
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -511,7 +573,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/instagram.png"))); // NOI18N
-        jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel24.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -522,13 +584,13 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/twitter (2).png"))); // NOI18N
-        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/facebook.png"))); // NOI18N
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         jSeparator3.setForeground(new java.awt.Color(10, 18, 42));
@@ -548,7 +610,7 @@ public class JFRMenu extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/whatsapp (3).png"))); // NOI18N
-        jLabel28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel28.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel28.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
@@ -898,6 +960,42 @@ public class JFRMenu extends javax.swing.JFrame {
          jLabel2.setForeground(Color.white);
     }//GEN-LAST:event_btnConsultarMouseExited
 
+    private void jLabelCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCardapioMouseClicked
+        // TODO add your handling code here:
+        JDialogCardapio jDialogCardapio = new JDialogCardapio(this, true);
+        jDialogCardapio.setVisible(true);
+    }//GEN-LAST:event_jLabelCardapioMouseClicked
+
+    private void jLabelCardapioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCardapioMouseEntered
+        // TODO add your handling code here:
+        btnCardapio.setBackground(Color.white);
+        jLabelCardapio.setForeground(Color.black);
+    }//GEN-LAST:event_jLabelCardapioMouseEntered
+
+    private void jLabelCardapioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCardapioMouseExited
+        // TODO add your handling code here:
+        btnCardapio.setBackground(new Color(10,18,42));
+        jLabelCardapio.setForeground(Color.white);
+    }//GEN-LAST:event_jLabelCardapioMouseExited
+
+    private void btnCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardapioMouseClicked
+        // TODO add your handling code here:
+        JDialogCardapio jDialogCardapio = new JDialogCardapio(this, true);
+        jDialogCardapio.setVisible(true);
+    }//GEN-LAST:event_btnCardapioMouseClicked
+
+    private void btnCardapioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardapioMouseEntered
+        // TODO add your handling code here:
+        btnCardapio.setBackground(Color.white);
+        jLabelCardapio.setForeground(Color.black);
+    }//GEN-LAST:event_btnCardapioMouseEntered
+
+    private void btnCardapioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardapioMouseExited
+        // TODO add your handling code here:
+        btnCardapio.setBackground(new Color(10,18,42));
+        jLabelCardapio.setForeground(Color.white);
+    }//GEN-LAST:event_btnCardapioMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -933,6 +1031,7 @@ public class JFRMenu extends javax.swing.JFrame {
     private javax.swing.JPanel Home;
     private javax.swing.JLabel JLPedidos;
     private javax.swing.JPanel JPbg;
+    private javax.swing.JPanel btnCardapio;
     private javax.swing.JPanel btnConsultar;
     private javax.swing.JPanel btnHome;
     private javax.swing.JPanel btnusuarios;
@@ -964,6 +1063,8 @@ public class JFRMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCardapio;
+    private javax.swing.JLabel jLabelCardapioIcone;
     private javax.swing.JLabel jLabelProdutos;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
