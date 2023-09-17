@@ -183,6 +183,58 @@ public class PedidoDAO {
         }
     }
     
+    
+    public static ModelPedido obterPedidoPorId(int idPedido)
+    {
+        ModelPedido pedido = null;
+        
+        try 
+        {
+            ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
+            Connection conn = conexaoMYSQL.obterConexao();
+            PreparedStatement stmt = null;
+            
+            stmt = conn.prepareStatement("SELECT id, usuario_id, forma_pagamento_id, data_hora, status_pagamento, status_pedido, total FROM tb_pedido WHERE id = ?");
+            stmt.setInt(1, idPedido);
+            stmt.executeQuery();
+            
+            ResultSet rs = stmt.getResultSet();
+            
+            if(rs.next())
+            {
+                pedido = new ModelPedido();
+
+                pedido.setId(rs.getInt("id"));
+                pedido.setDataHora(rs.getDate("data_hora"));
+                pedido.setStatusPagamento(rs.getInt("status_pagamento"));
+                pedido.setStatusPedido(rs.getInt("status_pedido"));
+                pedido.setTotal(rs.getDouble("total"));
+
+                //mudei aqui pra pegar o usuario completo, pq quis por o nome no textFieldUsuario no pedido, antes ficava null
+                ModelUsuario usuarioId = DAOUsuario.obterUsuarioPorID(rs.getInt("usuario_id"));
+                //usuarioId.setId(rs.getInt("usuario_id"));
+
+                pedido.setUsuarioId(usuarioId);
+
+                //mudei aqui, mesma coisa de cima, pra pegar o objeto ModelFormaPagamento pra pegar o nome/descreicao tbm
+                ModelFormaPagamento pagamentoID = FormaPagamentoDAO.obterFormaPagamento(rs.getInt("forma_pagamento_id"));
+                //pagamentoID.setId(rs.getInt("forma_pagamento_id"));
+                pedido.setFormaPagamentoId(pagamentoID);
+            }
+        } 
+        catch (ClassNotFoundException ex) 
+        {
+            System.out.println("Class not found");
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("SQL Exception");
+        }
+        
+        return pedido;
+    }
+    
+    
     public static ModelPedido carregarPedido(int idUsuario)
     {
         ModelPedido pedido = null;

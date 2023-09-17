@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Model.ItemVendaModel;
 import Model.ModelFormaPagamento;
 import Model.ModelItensPedido;
 import Model.ModelPedido;
@@ -12,6 +13,8 @@ import Model.ProdutoModel;
 import infra.ConexaoMYSQL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -237,5 +240,135 @@ public class ItensPedidoDAO {
         }
         
         return itemPedido;
+    }
+    
+    public static ArrayList<ItemVendaModel> ordenarMaisVendidos(String categoria, String nome)
+    {
+        
+        ArrayList<ItemVendaModel> itensVendas = new ArrayList<>();
+        
+        try 
+        {
+            ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
+            Connection conn = conexaoMYSQL.obterConexao();
+            PreparedStatement stmt = null;
+            
+            String trim = nome.trim();
+            nome = "%" + trim + "%";
+
+            stmt = conn.prepareStatement("SELECT P.ID, P.NOME, P.CATEGORIA_PRODUTO_ID, SUM(I.QUANTIDADE) AS QUANTIDADE, (P.PRECO * QUANTIDADE) AS VALOR FROM TB_ITENS_PEDIDO I INNER JOIN TB_PRODUTO P ON I.PRODUTO_ID = P.ID GROUP BY P.ID HAVING P.NOME LIKE ? AND P.CATEGORIA_PRODUTO_ID LIKE ? ORDER BY QUANTIDADE DESC, VALOR DESC");
+            //stmt = conn.prepareStatement("SELECT P.ID, P.NOME, SUM(I.QUANTIDADE) AS QUANTIDADE, (P.PRECO * QUANTIDADE) AS VALOR FROM TB_ITENS_PEDIDO I INNER JOIN TB_PRODUTO P ON I.PRODUTO_ID = P.ID GROUP BY P.ID ORDER BY QUANTIDADE DESC, VALOR DESC");
+            //stmt = conn.prepareStatement("SELECT P.ID, P.NOME, SUM(I.QUANTIDADE) AS QUANTIDADE, (P.PRECO * QUANTIDADE) AS VALOR FROM TB_ITENS_PEDIDO I INNER JOIN TB_PRODUTO P ON I.PRODUTO_ID = P.ID GROUP BY P.ID");
+            stmt.setString(1, nome);
+            stmt.setString(2, categoria);
+            stmt.executeQuery();
+
+            ResultSet rs = stmt.getResultSet();
+
+            while(rs.next())
+            {
+                ItemVendaModel itemVenda = new ItemVendaModel();
+
+                itemVenda.setIdProduto(rs.getInt("P.ID"));
+                itemVenda.setNomeProduto(rs.getString("P.NOME"));
+                itemVenda.setQuantidadeVendida(rs.getInt("QUANTIDADE"));
+                itemVenda.setValorVendido(rs.getDouble("VALOR"));
+
+                itensVendas.add(itemVenda);
+            }
+         
+        } catch (SQLException | ClassNotFoundException ex) 
+        {
+            Logger.getLogger(ItensPedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return itensVendas;
+    }
+    
+    public static ArrayList<ItemVendaModel> ordenarMaisValor(String categoria, String nome)
+    {
+        
+        ArrayList<ItemVendaModel> itensVendas = new ArrayList<>();
+        
+        try 
+        {
+            ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
+            Connection conn = conexaoMYSQL.obterConexao();
+            PreparedStatement stmt = null;
+            
+            String trim = nome.trim();
+            nome = "%" + trim + "%";
+
+            stmt = conn.prepareStatement("SELECT P.ID, P.NOME, P.CATEGORIA_PRODUTO_ID, SUM(I.QUANTIDADE) AS QUANTIDADE, (P.PRECO * QUANTIDADE) AS VALOR FROM TB_ITENS_PEDIDO I INNER JOIN TB_PRODUTO P ON I.PRODUTO_ID = P.ID GROUP BY P.ID HAVING P.NOME LIKE ? AND P.CATEGORIA_PRODUTO_ID LIKE ? ORDER BY VALOR DESC, QUANTIDADE DESC");
+            stmt.setString(1, nome);
+            stmt.setString(2, categoria);
+            stmt.executeQuery();
+
+            ResultSet rs = stmt.getResultSet();
+
+            while(rs.next())
+            {
+                ItemVendaModel itemVenda = new ItemVendaModel();
+
+                itemVenda.setIdProduto(rs.getInt("P.ID"));
+                itemVenda.setNomeProduto(rs.getString("P.NOME"));
+                itemVenda.setQuantidadeVendida(rs.getInt("QUANTIDADE"));
+                itemVenda.setValorVendido(rs.getDouble("VALOR"));
+
+                itensVendas.add(itemVenda);
+            }
+         
+        } catch (SQLException | ClassNotFoundException ex) 
+        {
+            Logger.getLogger(ItensPedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return itensVendas;
+    }
+    
+    public static ArrayList<ModelItensPedido> obterTodos()
+    {
+        ArrayList<ModelItensPedido> itensDoPedido = new ArrayList<>();
+        
+        try 
+        {
+            ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
+            Connection conn = conexaoMYSQL.obterConexao();
+            PreparedStatement stmt = null;
+            
+            stmt = conn.prepareStatement("SELECT id, pedido_id, produto_id, quantidade, opcional FROM tb_itens_pedido");
+            stmt.executeQuery();
+            
+            ResultSet rs = stmt.getResultSet();
+            
+            while(rs.next())
+            {
+                ModelItensPedido itemPedido = new ModelItensPedido();
+
+                itemPedido.setId(rs.getInt("id"));
+                itemPedido.setQuantidade(rs.getInt("quantidade"));
+                itemPedido.setOpcional(rs.getString("opcional"));
+
+                ModelPedido pedido = PedidoDAO.obterPedidoPorId(rs.getInt("pedido_id"));
+                itemPedido.setPedidoId(pedido);
+
+                ProdutoDAO produtoDAO = new ProdutoDAO();
+                ProdutoModel produto = produtoDAO.obterProdutoPorID(rs.getInt("produto_id"));
+                itemPedido.setProdutoId(produto);
+                
+                itensDoPedido.add(itemPedido);
+                System.out.println("Item: " + itemPedido.getId() + " Nome: " + itemPedido.getProdutoId().getNome());
+            }
+        } 
+        catch (ClassNotFoundException ex) 
+        {
+            System.out.println("Class not found");
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("SQL Exception");
+        }
+        
+        return itensDoPedido;
     }
 }

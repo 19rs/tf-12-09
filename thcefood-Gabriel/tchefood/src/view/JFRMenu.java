@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import view.itensPedidos.JDialogMenuItensPedido;
 
 
 /**
@@ -841,7 +842,8 @@ public class JFRMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-       
+        JDialogMenuItensPedido jDialogMenuItensPedido = new JDialogMenuItensPedido(this, true);
+        jDialogMenuItensPedido.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

@@ -46,11 +46,11 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
         
         TableColumn colunaID = jTableProdutos.getColumnModel().getColumn(0);
         colunaID.setPreferredWidth(80);
-        colunaID.setMaxWidth(100);
+        colunaID.setMaxWidth(80);
         
         TableColumn colunaPreco = jTableProdutos.getColumnModel().getColumn(5);
         colunaPreco.setPreferredWidth(80);
-        colunaPreco.setMaxWidth(100);
+        colunaPreco.setMaxWidth(80);
 
         atualizarTamanhoTabela();
     }
@@ -106,7 +106,7 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Consultar Produtos");
         jLabelTitulo.setMinimumSize(new java.awt.Dimension(1000, 680));
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 6, 400, -1));
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 12, 400, -1));
 
         jScrollPane.setPreferredSize(new java.awt.Dimension(1000, 550));
 
@@ -136,6 +136,7 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
                 return canEdit [columnIndex];
             }
         });
+        jTableProdutos.setIntercellSpacing(new java.awt.Dimension(10, 0));
         jTableProdutos.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         jTableProdutos.setPreferredSize(new java.awt.Dimension(800, 200));
         jTableProdutos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

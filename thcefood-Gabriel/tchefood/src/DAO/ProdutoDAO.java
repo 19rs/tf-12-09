@@ -84,11 +84,7 @@ public class ProdutoDAO
             
             stmt.executeUpdate();
         } 
-        catch (ClassNotFoundException ex) 
-        {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
+        catch (ClassNotFoundException | SQLException ex) 
         {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,11 +124,7 @@ public class ProdutoDAO
             }
             
         } 
-        catch (ClassNotFoundException ex) 
-        {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
+        catch (ClassNotFoundException | SQLException ex) 
         {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -171,11 +163,7 @@ public class ProdutoDAO
                 produto.setCategoriaProduto(categoriaProduto);
             }
         } 
-        catch (ClassNotFoundException ex) 
-        {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
+        catch (ClassNotFoundException | SQLException ex) 
         {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -439,11 +427,7 @@ public class ProdutoDAO
             }
             
         } 
-        catch (ClassNotFoundException ex) 
-        {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
+        catch (ClassNotFoundException | SQLException ex) 
         {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
