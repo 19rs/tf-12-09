@@ -75,7 +75,7 @@ public class JDialogEditarItemPedido extends javax.swing.JDialog
         
         try 
         {
-            String caminhoImagem = itemPedido.getProdutoId().getImagem();
+            String caminhoImagem = "/images/" + itemPedido.getProdutoId().getImagem();
             
             Image img = ImageIO.read(getClass().getResource(caminhoImagem));
             ImageIcon icon = new ImageIcon(img.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));

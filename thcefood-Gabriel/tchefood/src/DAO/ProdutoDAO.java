@@ -361,4 +361,93 @@ public class ProdutoDAO
         
         return produtos;
     }
+    
+    public ArrayList<ProdutoModel> filtrarProdutos(String categoria, String nomeDescricao, Double valorInicial, Double valorFinal)
+    {
+        ArrayList<ProdutoModel> produtos = new ArrayList<ProdutoModel>();
+        
+        try 
+        {
+            ConexaoMYSQL conexaoMYSQL = new ConexaoMYSQL();
+            Connection conn = conexaoMYSQL.obterConexao();
+            PreparedStatement stmt = null;
+            
+            String trim = nomeDescricao.trim();
+            nomeDescricao = "%" + trim + "%";
+        
+            String query = "SELECT id, categoria_produto_id, nome, descricao, preco, imagem FROM tb_produto WHERE CATEGORIA_PRODUTO_ID LIKE ? AND (NOME LIKE ? OR DESCRICAO LIKE ?)";
+            
+            if(valorInicial == null && valorFinal == null)
+            {
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, categoria);
+                stmt.setString(2, nomeDescricao);
+                stmt.setString(3, nomeDescricao);
+            }
+            else if(valorInicial != null && valorFinal == null)
+            {
+                query += " AND preco > ?";
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, categoria);
+                stmt.setString(2, nomeDescricao);
+                stmt.setString(3, nomeDescricao);
+                stmt.setDouble(4, valorInicial);
+            }
+            else if(valorInicial == null && valorFinal != null)
+            {
+                query += " AND preco < ?";
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, categoria);
+                stmt.setString(2, nomeDescricao);
+                stmt.setString(3, nomeDescricao);
+                stmt.setDouble(4, valorFinal);
+            }
+            else if(valorInicial != null && valorFinal != null)
+            {
+                query += " AND preco BETWEEN ? AND ?";
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, categoria);
+                stmt.setString(2, nomeDescricao);
+                stmt.setString(3, nomeDescricao);
+                stmt.setDouble(4, valorInicial);
+                stmt.setDouble(5, valorFinal);
+            }
+            
+            
+
+            stmt.executeQuery();
+            
+            //System.out.println(query + " categpria " + categoria + " nomeDesc " + nomeDescricao + " precoIni " + valorInicial + " precoFin " + valorFinal);
+            ResultSet rs = stmt.getResultSet();
+            
+            while(rs.next())
+            {
+                ProdutoModel produto = new ProdutoModel();
+                
+                produto.setId(rs.getInt("id"));
+                produto.setNome(rs.getString("nome"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setPreco(rs.getDouble("preco"));
+                produto.setImagem(rs.getString("imagem"));
+                
+                //pegar categoria do produto
+                ModelCategoriaProduto categoriaProduto = CategoriaProdutoDAO.getCategoria(rs.getInt("categoria_produto_id"));
+                                
+                produto.setCategoriaProduto(categoriaProduto);
+                
+                produtos.add(produto);
+            }
+            
+        } 
+        catch (ClassNotFoundException ex) 
+        {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return produtos;
+    }
 }

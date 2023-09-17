@@ -15,6 +15,7 @@ import Model.ProdutoModel;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import view.formapagamentos.jdCadastrarCartao;
 import view.formapagamentos.jdCadastrarPix;
 import view.itensPedidos.JDCadastrarItensPedidos;
 import view.itensPedidos.JDialogEditarItemPedido;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 
 public class JDialogPedidoCardapio extends javax.swing.JDialog 
@@ -122,14 +124,35 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         {
             int id = produtos.get(i).getId();
             
+            //mostrar o id e o nome no cardápio
             //btnProdutos.get(i).setText(produtos.get(i).getId() + " - "  + produtos.get(i).getNome());
             btnProdutos.get(i).setText(produtos.get(i).getNome());
             
-            String caminhoImagem = produtos.get(i).getImagem();
+            String nomeImagem = produtos.get(i).getImagem();
             
             try 
             {
-                Image img = ImageIO.read(getClass().getResource(caminhoImagem));
+                Image img;
+                
+                String caminhoImagem = System.getProperty("user.dir") + "\\src\\images/"; //pega até a pasta source
+
+                String caminhoCompleto = caminhoImagem + nomeImagem;
+        
+                File checarImagemPresenteNoDiretorio = new File(caminhoCompleto);
+                
+                //System.out.println("caminho imagem: " + caminhoCompleto);
+                
+        
+                if (!checarImagemPresenteNoDiretorio.exists()) 
+                {
+                    img = ImageIO.read(getClass().getResource("null.png"));
+                }
+                else
+                {
+                    String imagem = "/images/" + nomeImagem;
+                    img = ImageIO.read(getClass().getResource(imagem));
+                }
+                
                 ImageIcon icon = new javax.swing.ImageIcon(img.getScaledInstance(100, 80, Image.SCALE_SMOOTH));
                 btnProdutos.get(i).setIcon(icon);
             } 
@@ -376,6 +399,7 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
         });
         jPanelCardapio.add(jButtonNextPagina, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 585, -1, -1));
 
+        jButtonPrevPagina.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonPrevPagina.setEnabled(false);
         jButtonPrevPagina.setLabel("<");
         jButtonPrevPagina.setMaximumSize(new java.awt.Dimension(45, 35));
@@ -405,6 +429,8 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
             }
         });
         jPanelCardapio.add(jTextFieldFiltrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 25, 240, -1));
+        PromptSupport.setPrompt("Pesquisar por nome", jTextFieldFiltrarProduto);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, jTextFieldFiltrarProduto);
 
         jComboBoxCategoriaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos Produtos" }));
         jComboBoxCategoriaProduto.setMinimumSize(new java.awt.Dimension(65, 22));

@@ -60,7 +60,7 @@ public class JDialogProduto extends javax.swing.JDialog
         
         try 
         {
-            String caminhoImagem = produto.getImagem();
+            String caminhoImagem = "/images/" + produto.getImagem();
             
             Image img = ImageIO.read(getClass().getResource(caminhoImagem));
             ImageIcon icon = new ImageIcon(img.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));

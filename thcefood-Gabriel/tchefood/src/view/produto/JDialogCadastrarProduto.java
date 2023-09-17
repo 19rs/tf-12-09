@@ -21,7 +21,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class JDialogCadastrarProduto extends javax.swing.JDialog 
 {
     private Image image;
-    private String imagemDB = "/images/null.png";
+    private String imagemDB = "null.png";
     ArrayList<ModelCategoriaProduto> categorias;
     
     public JDialogCadastrarProduto(java.awt.Frame parent, boolean modal) 
@@ -319,7 +319,8 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog
             Logger.getLogger(JDialogCadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        imagemDB = "/images/"+nomeImagem+".png";
+        //imagemDB = "/images/"+nomeImagem+".png";
+        imagemDB = nomeImagem+".png";
 
         
         ProdutoModel produto = new ProdutoModel();

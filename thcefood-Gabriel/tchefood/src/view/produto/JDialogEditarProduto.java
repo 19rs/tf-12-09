@@ -26,7 +26,7 @@ import tablemodel.TableModelProduto;
 public class JDialogEditarProduto extends javax.swing.JDialog 
 {
     private Image image;
-    private String imagemDB = "/images/null.png";
+    private String imagemDB = "null.png";
     private int id;
     ProdutoModel produto;
     private JTable jTableProdutos;
@@ -66,7 +66,7 @@ public class JDialogEditarProduto extends javax.swing.JDialog
 
         jComboBoxCategoria.setSelectedIndex(indexCategoriaDoProduto);
         
-        String caminhoImagem = produto.getImagem();
+        String caminhoImagem = "/images/" + produto.getImagem();
             
 
         try 
@@ -74,7 +74,7 @@ public class JDialogEditarProduto extends javax.swing.JDialog
             image = ImageIO.read(getClass().getResource(caminhoImagem));
             ImageIcon icon = new ImageIcon(image.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
             jLabelFoto.setIcon(icon);
-            imagemDB = caminhoImagem;
+            imagemDB = produto.getImagem();
             System.out.println("caminho imagem: " + caminhoImagem);
         } 
         catch (IOException ex) 
@@ -151,8 +151,10 @@ public class JDialogEditarProduto extends javax.swing.JDialog
 
         jComboBoxCategoria.setPreferredSize(new java.awt.Dimension(72, 25));
 
+        jButtonSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tchefood/src/icon/check.png"))); // NOI18N
         jButtonSalvar.setText("Salvar");
-        jButtonSalvar.setPreferredSize(new java.awt.Dimension(90, 30));
+        jButtonSalvar.setPreferredSize(new java.awt.Dimension(110, 30));
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -347,7 +349,8 @@ public class JDialogEditarProduto extends javax.swing.JDialog
                 Logger.getLogger(JDialogEditarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            imagemDB = "/images/"+nomeImagem+".png";
+            imagemDB = nomeImagem+".png";
+            //imagemDB = nomeImagem;
         }
         
         produto.setNome(nome);

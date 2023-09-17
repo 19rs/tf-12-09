@@ -1,22 +1,34 @@
 package view.produto;
 
+import DAO.CategoriaProdutoDAO;
 import DAO.ProdutoDAO;
+import Model.ModelCategoriaProduto;
 import Model.ProdutoModel;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 import tablemodel.TableModelProduto;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 
 public class JDialogGerenciarProduto extends javax.swing.JDialog 
 {
+    
+    private String filtroCategoria = "%";
+    private String filtroNome = "%";
+    private Double filtroPrecoInicial = null;
+    private Double filtroPrecoFinal = null;
+    ArrayList<ModelCategoriaProduto> categorias;
     
     public JDialogGerenciarProduto(java.awt.Frame parent, boolean modal) 
     {
         super(parent, modal);
         initComponents();
         jTableProdutos.setModel(initTable());
+        carregarCategorias();
         ajustarTamanhoTabela();
         this.setLocationRelativeTo(null);
     }
@@ -50,6 +62,20 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
         jTableProdutos.setPreferredSize(size);
     }
 
+    private void carregarCategorias() 
+    {
+        categorias = new ArrayList<>();
+        
+        categorias = CategoriaProdutoDAO.obterTodasCategorias();
+        
+        for(int i = 0; i < categorias.size(); i++) 
+        {
+            String idCategoria = String.valueOf(categorias.get(i).getId());
+            String descricao = categorias.get(i).getDescricao();
+            String item = idCategoria + " - " + descricao;
+            this.jComboBoxCategoriaProduto.addItem(item);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +90,11 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
         jTableProdutos = new javax.swing.JTable();
         jButtonEditar = new javax.swing.JButton();
         jButtonDeletar = new javax.swing.JButton();
+        jComboBoxCategoriaProduto = new javax.swing.JComboBox<>();
+        jTextFieldFiltrarNomeDescricaoProduto = new javax.swing.JTextField();
+        jButtonLimparFiltrosProduto = new javax.swing.JButton();
+        jTextFieldPrecoInicialProduto = new javax.swing.JTextField();
+        jTextFieldPrecoFinalProduto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta");
@@ -140,6 +171,67 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
         });
         getContentPane().add(jButtonDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, -1, -1));
 
+        jComboBoxCategoriaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Categoria" }));
+        jComboBoxCategoriaProduto.setMinimumSize(new java.awt.Dimension(65, 22));
+        jComboBoxCategoriaProduto.setPreferredSize(new java.awt.Dimension(65, 25));
+        jComboBoxCategoriaProduto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCategoriaProdutoItemStateChanged(evt);
+            }
+        });
+        jComboBoxCategoriaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCategoriaProdutoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxCategoriaProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 190, -1));
+
+        jTextFieldFiltrarNomeDescricaoProduto.setPreferredSize(new java.awt.Dimension(64, 25));
+        jTextFieldFiltrarNomeDescricaoProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldFiltrarNomeDescricaoProdutoKeyReleased(evt);
+            }
+        });
+        getContentPane().add(jTextFieldFiltrarNomeDescricaoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 240, -1));
+        PromptSupport.setPrompt("Por Nome ou Descrição", jTextFieldFiltrarNomeDescricaoProduto);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, jTextFieldFiltrarNomeDescricaoProduto);
+
+        jButtonLimparFiltrosProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tchefood/src/icon/filtro-limpo.png"))); // NOI18N
+        jButtonLimparFiltrosProduto.setText("Limpar");
+        jButtonLimparFiltrosProduto.setPreferredSize(new java.awt.Dimension(90, 25));
+        jButtonLimparFiltrosProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparFiltrosProdutoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonLimparFiltrosProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 90, -1, -1));
+
+        jTextFieldPrecoInicialProduto.setPreferredSize(new java.awt.Dimension(64, 25));
+        jTextFieldPrecoInicialProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPrecoInicialProdutoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPrecoInicialProdutoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextFieldPrecoInicialProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 80, -1));
+        PromptSupport.setPrompt("Preço Inicial", jTextFieldPrecoInicialProduto);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, jTextFieldPrecoInicialProduto);
+
+        jTextFieldPrecoFinalProduto.setPreferredSize(new java.awt.Dimension(64, 25));
+        jTextFieldPrecoFinalProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPrecoFinalProdutoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPrecoFinalProdutoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextFieldPrecoFinalProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 90, 80, -1));
+        PromptSupport.setPrompt("Preço Final", jTextFieldPrecoFinalProduto);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, jTextFieldPrecoFinalProduto);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -184,13 +276,84 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
             produtoDAO.deletar(produto);
             JOptionPane.showMessageDialog(this, "Produto Excluído");    
             
-            TableModelProduto tableModel = new TableModelProduto(produtoDAO.consultar());
-            jTableProdutos.setModel(tableModel);
             
-            //atualizarTamanhoTabela();
-            ajustarTamanhoTabela();
+            this.limparFiltros();
         }
     }//GEN-LAST:event_jButtonDeletarActionPerformed
+
+    private void jComboBoxCategoriaProdutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaProdutoItemStateChanged
+        //this.filtrar();
+        //System.out.println("Filtrou Categoria");
+    }//GEN-LAST:event_jComboBoxCategoriaProdutoItemStateChanged
+
+    private void jTextFieldFiltrarNomeDescricaoProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFiltrarNomeDescricaoProdutoKeyReleased
+        this.filtrar();
+    }//GEN-LAST:event_jTextFieldFiltrarNomeDescricaoProdutoKeyReleased
+
+    private void jButtonLimparFiltrosProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparFiltrosProdutoActionPerformed
+        this.limparFiltros();
+    }//GEN-LAST:event_jButtonLimparFiltrosProdutoActionPerformed
+
+    private void jTextFieldPrecoInicialProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecoInicialProdutoKeyReleased
+        char c = evt.getKeyChar();
+        
+        if(Character.isDigit(c))
+        {
+            this.filtrar();
+        }
+    }//GEN-LAST:event_jTextFieldPrecoInicialProdutoKeyReleased
+
+    private void jTextFieldPrecoFinalProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecoFinalProdutoKeyReleased
+        char c = evt.getKeyChar();
+        
+        if(Character.isDigit(c))
+        {
+            this.filtrar();
+        }
+    }//GEN-LAST:event_jTextFieldPrecoFinalProdutoKeyReleased
+
+    private void jTextFieldPrecoInicialProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecoInicialProdutoKeyTyped
+        char c = evt.getKeyChar();
+        
+        String preco = jTextFieldPrecoInicialProduto.getText();
+        
+        if(c == KeyEvent.VK_COMMA && preco.contains(","))
+        {
+            evt.consume();    
+        }
+        if(c == KeyEvent.VK_COMMA && jTextFieldPrecoInicialProduto.getText().isBlank())
+        {
+            evt.consume();    
+        }
+        if(!Character.isDigit(c) && c != KeyEvent.VK_COMMA)
+        {
+            evt.consume();    
+        }
+    }//GEN-LAST:event_jTextFieldPrecoInicialProdutoKeyTyped
+
+    private void jTextFieldPrecoFinalProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecoFinalProdutoKeyTyped
+        char c = evt.getKeyChar();
+        
+        String preco = jTextFieldPrecoInicialProduto.getText();
+        
+        if(c == KeyEvent.VK_COMMA && preco.contains(","))
+        {
+            evt.consume();    
+        }
+        if(c == KeyEvent.VK_COMMA && jTextFieldPrecoInicialProduto.getText().isBlank())
+        {
+            evt.consume();    
+        }
+        if(!Character.isDigit(c) && c != KeyEvent.VK_COMMA)
+        {
+            evt.consume();    
+        }
+    }//GEN-LAST:event_jTextFieldPrecoFinalProdutoKeyTyped
+
+    private void jComboBoxCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaProdutoActionPerformed
+        // TODO add your handling code here:
+        this.filtrar();
+    }//GEN-LAST:event_jComboBoxCategoriaProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,8 +406,90 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonLimparFiltrosProduto;
+    private javax.swing.JComboBox<String> jComboBoxCategoriaProduto;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable jTableProdutos;
+    private javax.swing.JTextField jTextFieldFiltrarNomeDescricaoProduto;
+    private javax.swing.JTextField jTextFieldPrecoFinalProduto;
+    private javax.swing.JTextField jTextFieldPrecoInicialProduto;
     // End of variables declaration//GEN-END:variables
+
+
+
+    private void filtrar()
+    {
+        if(jComboBoxCategoriaProduto.getSelectedIndex() > 0)
+        {
+            int idDaCategoria = categorias.get(jComboBoxCategoriaProduto.getSelectedIndex() -1 ).getId(); //pq começa em 0 o array
+
+            filtroCategoria = String.valueOf(idDaCategoria);
+        }
+        else
+        {
+            filtroCategoria = "%";
+        }
+        if(!jTextFieldFiltrarNomeDescricaoProduto.getText().isBlank())
+        {
+            //filtroNome = "%" + jTextFieldFiltrarNomeProduto.getText() + "%";
+            filtroNome = jTextFieldFiltrarNomeDescricaoProduto.getText();
+        }
+        else
+        {
+            filtroNome = "%";
+        }
+        
+        if(!jTextFieldPrecoInicialProduto.getText().isBlank())
+        {
+            String precoInicial = jTextFieldPrecoInicialProduto.getText();
+            if(precoInicial.contains(","))
+            {
+                precoInicial = precoInicial.replace(",", ".");
+            }
+            filtroPrecoInicial = Double.valueOf(precoInicial);
+        }
+        else
+        {
+            filtroPrecoInicial = null;
+        }
+        if(!jTextFieldPrecoFinalProduto.getText().isBlank())
+        {
+            String precoFinal = jTextFieldPrecoFinalProduto.getText();
+            if(precoFinal.contains(","))
+            {
+                precoFinal = precoFinal.replace(",", ".");
+            }
+            filtroPrecoFinal = Double.valueOf(precoFinal);
+        }
+        else
+        {
+            filtroPrecoFinal = null;
+        }
+        
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        TableModelProduto tableModel = new TableModelProduto(produtoDAO.filtrarProdutos(filtroCategoria, filtroNome, filtroPrecoInicial, filtroPrecoFinal));
+        jTableProdutos.setModel(tableModel);
+
+        //atualizarTamanhoTabela();
+        ajustarTamanhoTabela();
+    }
+    
+    private void limparFiltros()
+    {
+        jComboBoxCategoriaProduto.setSelectedIndex(0);
+        jTextFieldFiltrarNomeDescricaoProduto.setText(null);
+        jTextFieldPrecoInicialProduto.setText(null);
+        jTextFieldPrecoFinalProduto.setText(null);
+        filtroCategoria = "%";
+        filtroNome = "%";
+        filtroPrecoInicial = null;
+        filtroPrecoFinal = null;
+
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        TableModelProduto tableModel = new TableModelProduto(produtoDAO.consultar());
+        jTableProdutos.setModel(tableModel);
+
+        ajustarTamanhoTabela();
+    }
 }
