@@ -37,7 +37,7 @@ public class JDMenuPedido extends javax.swing.JDialog {
         jbCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/register.png"))); // NOI18N
         jbCadastrar.setText("Cadastrar");
-        jbCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jbCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCadastrarActionPerformed(evt);
@@ -47,7 +47,7 @@ public class JDMenuPedido extends javax.swing.JDialog {
         jbGerenciar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbGerenciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tasks.png"))); // NOI18N
         jbGerenciar.setText("Gerenciar");
-        jbGerenciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbGerenciar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jbGerenciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGerenciarActionPerformed(evt);
@@ -59,20 +59,20 @@ public class JDMenuPedido extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(jbCadastrar)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbGerenciar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCadastrar)
                     .addComponent(jbGerenciar))
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         pack();

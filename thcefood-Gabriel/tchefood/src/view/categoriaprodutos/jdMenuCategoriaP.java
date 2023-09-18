@@ -37,7 +37,7 @@ public class jdMenuCategoriaP extends javax.swing.JDialog {
         jbCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/register.png"))); // NOI18N
         jbCadastrar.setText("Cadastrar");
-        jbCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jbCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCadastrarActionPerformed(evt);
@@ -47,7 +47,7 @@ public class jdMenuCategoriaP extends javax.swing.JDialog {
         jbGerenciar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbGerenciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tasks.png"))); // NOI18N
         jbGerenciar.setText("Gerenciar");
-        jbGerenciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbGerenciar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jbGerenciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGerenciarActionPerformed(evt);
@@ -61,7 +61,7 @@ public class jdMenuCategoriaP extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jbCadastrar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbGerenciar)
                 .addGap(10, 10, 10))
         );
