@@ -74,7 +74,7 @@ public class TableModelVenda extends AbstractTableModel
         }
         
         JDialogRelatorioVendas.jLabelQtdeTotal.setText("Quantidade Total: " + totalQtde);
-        System.out.println("Qtde: " + totalQtde);
+        //System.out.println("Qtde: " + totalQtde);
     }
     
     private void calcularTotalVendido()
@@ -87,6 +87,6 @@ public class TableModelVenda extends AbstractTableModel
         }
         
         JDialogRelatorioVendas.jLabelValorTotal.setText("Valor Total: R$ " + String.format("%.2f",totalValor));
-        System.out.println("TOTAL: " + totalValor);
+        //System.out.println("TOTAL: " + totalValor);
     }
 }

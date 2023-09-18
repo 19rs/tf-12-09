@@ -31,12 +31,11 @@ public class ProdutoDAO
             
             stmt.executeUpdate();
             
+            stmt.close();
+            conn.close();
+            
         } 
-        catch (ClassNotFoundException ex) 
-        {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
+        catch (ClassNotFoundException | SQLException ex) 
         {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,12 +54,11 @@ public class ProdutoDAO
             
             stmt.executeUpdate();
             
+            stmt.close();
+            conn.close();
+            
         } 
-        catch (ClassNotFoundException ex) 
-        {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
+        catch (ClassNotFoundException | SQLException ex) 
         {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,6 +81,9 @@ public class ProdutoDAO
             stmt.setInt(6, produto.getId());
             
             stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {
@@ -123,6 +124,9 @@ public class ProdutoDAO
                 produtos.add(produto);
             }
             
+            stmt.close();
+            conn.close();
+            
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {
@@ -162,6 +166,9 @@ public class ProdutoDAO
                 
                 produto.setCategoriaProduto(categoriaProduto);
             }
+            
+            stmt.close();
+            conn.close();
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {
@@ -215,10 +222,13 @@ public class ProdutoDAO
 
             produtos.add(produto);
           }
+          
+          stmt.close();
+          conn.close();
         } 
-        catch (Exception e) 
+        catch (ClassNotFoundException | SQLException e) 
         {
-            
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         System.out.println("Lenght no DAO:" + produtos.size());
         return produtos;
@@ -262,10 +272,13 @@ public class ProdutoDAO
               
               produtos.add(produto);
           }
+          
+          stmt.close();
+          conn.close();
         } 
-        catch (Exception e) 
+        catch (ClassNotFoundException | SQLException e) 
         {
-            
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return produtos;
     }
@@ -288,6 +301,9 @@ public class ProdutoDAO
             {
                 totalRegistros = rs.getInt("COUNT(*)");
             }
+            
+            stmt.close();
+            conn.close();
         } 
         catch (SQLException ex) 
         {
@@ -337,12 +353,11 @@ public class ProdutoDAO
                 produtos.add(produto);
             }
             
+            stmt.close();
+            conn.close();
+            
         } 
-        catch (ClassNotFoundException ex) 
-        {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (SQLException ex) 
+        catch (ClassNotFoundException | SQLException ex) 
         {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -374,7 +389,7 @@ public class ProdutoDAO
             }
             else if(valorInicial != null && valorFinal == null)
             {
-                query += " AND preco > ?";
+                query += " AND preco >= ?";
                 stmt = conn.prepareStatement(query);
                 stmt.setString(1, categoria);
                 stmt.setString(2, nomeDescricao);
@@ -383,7 +398,7 @@ public class ProdutoDAO
             }
             else if(valorInicial == null && valorFinal != null)
             {
-                query += " AND preco < ?";
+                query += " AND preco <= ?";
                 stmt = conn.prepareStatement(query);
                 stmt.setString(1, categoria);
                 stmt.setString(2, nomeDescricao);
@@ -426,6 +441,8 @@ public class ProdutoDAO
                 produtos.add(produto);
             }
             
+            stmt.close();
+            conn.close();
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {
@@ -467,6 +484,9 @@ public class ProdutoDAO
                 
                 produtos.add(produto);
             }
+            
+            stmt.close();
+            conn.close();
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {

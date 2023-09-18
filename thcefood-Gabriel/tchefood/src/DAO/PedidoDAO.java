@@ -221,6 +221,8 @@ public class PedidoDAO {
                 //pagamentoID.setId(rs.getInt("forma_pagamento_id"));
                 pedido.setFormaPagamentoId(pagamentoID);
             }
+            
+            conn.close();
         } 
         catch (ClassNotFoundException ex) 
         {
@@ -272,6 +274,8 @@ public class PedidoDAO {
                 //pagamentoID.setId(rs.getInt("forma_pagamento_id"));
                 pedido.setFormaPagamentoId(pagamentoID);
             }
+            
+            conn.close();
         } 
         catch (ClassNotFoundException ex) 
         {
@@ -303,6 +307,8 @@ public class PedidoDAO {
             {
                 totalRegistros = rs.getInt("COUNT(*)");
             }
+            
+            conn.close();
         } 
         catch (SQLException ex) 
         {
@@ -352,6 +358,8 @@ public class PedidoDAO {
             {
                 id = rs.getInt("MAX(id)");
             }
+            
+            conn.close();
          } 
          catch (SQLException ex) 
          {
@@ -398,6 +406,8 @@ public class PedidoDAO {
                 //pagamentoID.setId(rs.getInt("forma_pagamento_id"));
                 pedido.setFormaPagamentoId(pagamentoID);
             }
+            
+            conn.close();
         } 
         catch (ClassNotFoundException ex) 
         {

@@ -144,7 +144,8 @@ public class ItensPedidoDAO {
 
             return idExist;
 
-        } catch (Exception e5){
+        } 
+        catch (Exception e5){
             throw new RuntimeException(e5);
         }
     }
@@ -181,8 +182,11 @@ public class ItensPedidoDAO {
                 itemPedido.setProdutoId(produto);
                 
                 itensDoPedido.add(itemPedido);
-                System.out.println("Item: " + itemPedido.getId() + " Nome: " + itemPedido.getProdutoId().getNome());
+                //System.out.println("Item: " + itemPedido.getId() + " Nome: " + itemPedido.getProdutoId().getNome());
             }
+            
+            stmt.close();
+            conn.close();
         } 
         catch (ClassNotFoundException ex) 
         {
@@ -229,6 +233,9 @@ public class ItensPedidoDAO {
                 itemPedido.setProdutoId(produto);
                 
             }
+            
+            stmt.close();
+            conn.close();
         } 
         catch (ClassNotFoundException ex) 
         {
@@ -278,7 +285,10 @@ public class ItensPedidoDAO {
                 itensVendas.add(itemVenda);
             }
          
-        } catch (SQLException | ClassNotFoundException ex) 
+            stmt.close();
+            conn.close();
+        } 
+        catch (SQLException | ClassNotFoundException ex) 
         {
             Logger.getLogger(ItensPedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -319,8 +329,12 @@ public class ItensPedidoDAO {
 
                 itensVendas.add(itemVenda);
             }
+            
+            stmt.close();
+            conn.close();
          
-        } catch (SQLException | ClassNotFoundException ex) 
+        } 
+        catch (SQLException | ClassNotFoundException ex) 
         {
             Logger.getLogger(ItensPedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -359,8 +373,11 @@ public class ItensPedidoDAO {
                 itemPedido.setProdutoId(produto);
                 
                 itensDoPedido.add(itemPedido);
-                System.out.println("Item: " + itemPedido.getId() + " Nome: " + itemPedido.getProdutoId().getNome());
+                //System.out.println("Item: " + itemPedido.getId() + " Nome: " + itemPedido.getProdutoId().getNome());
             }
+            
+            stmt.close();
+            conn.close();
         } 
         catch (ClassNotFoundException ex) 
         {

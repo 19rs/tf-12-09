@@ -29,17 +29,18 @@ public class JDialogEditarProduto extends javax.swing.JDialog
     private String imagemDB = "null.png";
     private int id;
     ProdutoModel produto;
-    private JTable jTableProdutos;
+    //private JTable jTableProdutos;
+    private JDialogGerenciarProduto jDialogGerenciarProduto;
     ArrayList<ModelCategoriaProduto> categorias;
     private boolean trocouImagem = false;
     
-    public JDialogEditarProduto(java.awt.Frame parent, boolean modal, int id, JTable jTableProdutos) 
+    public JDialogEditarProduto(java.awt.Frame parent, boolean modal, int id, JDialogGerenciarProduto jDialogGerenciarProduto) 
     {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.id = id;
-        this.jTableProdutos = jTableProdutos;
+        this.jDialogGerenciarProduto = jDialogGerenciarProduto;
         carregarCategorias();
         carregarDados();
     }
@@ -368,13 +369,14 @@ public class JDialogEditarProduto extends javax.swing.JDialog
         JOptionPane.showMessageDialog(this, "Produto editado com sucesso");
         this.dispose();
         
-        TableModelProduto tableModel = new TableModelProduto(produtoDAO.consultar());
-        jTableProdutos.setModel(tableModel);
+        jDialogGerenciarProduto.filtrar();
+        //TableModelProduto tableModel = new TableModelProduto(produtoDAO.consultar());
+        //jTableProdutos.setModel(tableModel);
         
-        atualizarTabela();
+        //atualizarTabela();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void atualizarTabela()
+    /*private void atualizarTabela()
     {
         TableColumn colunaID = jTableProdutos.getColumnModel().getColumn(0);
         colunaID.setPreferredWidth(80);
@@ -383,7 +385,7 @@ public class JDialogEditarProduto extends javax.swing.JDialog
         TableColumn colunaPreco = jTableProdutos.getColumnModel().getColumn(5);
         colunaPreco.setPreferredWidth(80);
         colunaPreco.setMaxWidth(100);
-    }
+    }*/
     
     /**
      * @param args the command line arguments

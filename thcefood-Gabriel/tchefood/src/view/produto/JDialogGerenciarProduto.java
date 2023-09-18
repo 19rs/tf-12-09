@@ -248,7 +248,7 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
         Object idObjeto = jTableProdutos.getValueAt(linhaSelecionada, 0);
         int id = (int) idObjeto;
         
-        JDialogEditarProduto jDialogEditarProduto = new JDialogEditarProduto(null, true, id, jTableProdutos);
+        JDialogEditarProduto jDialogEditarProduto = new JDialogEditarProduto(null, true, id, this);
         jDialogEditarProduto.setVisible(true);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
@@ -277,7 +277,8 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
             JOptionPane.showMessageDialog(this, "Produto Excluído");    
             
             
-            this.limparFiltros();
+            //this.limparFiltros();
+            this.filtrar();
         }
     }//GEN-LAST:event_jButtonDeletarActionPerformed
 
@@ -297,7 +298,7 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
     private void jTextFieldPrecoInicialProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecoInicialProdutoKeyReleased
         char c = evt.getKeyChar();
         
-        if(Character.isDigit(c))
+        if(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)
         {
             this.filtrar();
         }
@@ -306,7 +307,7 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
     private void jTextFieldPrecoFinalProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecoFinalProdutoKeyReleased
         char c = evt.getKeyChar();
         
-        if(Character.isDigit(c))
+        if(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)
         {
             this.filtrar();
         }
@@ -334,13 +335,13 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
     private void jTextFieldPrecoFinalProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecoFinalProdutoKeyTyped
         char c = evt.getKeyChar();
         
-        String preco = jTextFieldPrecoInicialProduto.getText();
+        String preco = jTextFieldPrecoFinalProduto.getText();
         
         if(c == KeyEvent.VK_COMMA && preco.contains(","))
         {
             evt.consume();    
         }
-        if(c == KeyEvent.VK_COMMA && jTextFieldPrecoInicialProduto.getText().isBlank())
+        if(c == KeyEvent.VK_COMMA && jTextFieldPrecoFinalProduto.getText().isBlank())
         {
             evt.consume();    
         }
@@ -418,7 +419,7 @@ public class JDialogGerenciarProduto extends javax.swing.JDialog
 
 
 
-    private void filtrar()
+    public void filtrar()
     {
         if(jComboBoxCategoriaProduto.getSelectedIndex() > 0)
         {

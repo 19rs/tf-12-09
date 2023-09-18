@@ -642,7 +642,7 @@ public class JDialogPedidoCardapio extends javax.swing.JDialog
                 
         strTotalPedido = strTotalPedido.replace("R$ ", "");
         strTotalPedido = strTotalPedido.replace(",", ".");
-        System.out.println(strTotalPedido);
+        //System.out.println(strTotalPedido);
        
         double totalPedido = Double.parseDouble(strTotalPedido);
 
